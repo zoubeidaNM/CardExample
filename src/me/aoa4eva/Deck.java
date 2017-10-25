@@ -8,10 +8,12 @@ public class Deck {
 
     ArrayList<Card> cards;
 
-    //Initialising the arraylist of cards in the deck
+    //Initializing the arraylist of cards in the deck
+
     public Deck()
     {
         cards = new ArrayList<Card>();
+        fillDeck();
     }
 
     public ArrayList<Card> getCards() {
@@ -19,6 +21,16 @@ public class Deck {
     }
 
 
+    public Card dealCard2(){
+
+        Random cardsInDeck;
+        cardsInDeck = new Random();
+        int cardIndex = cardsInDeck.nextInt(cards.size());
+        Card returnedCard = cards.get(cardIndex);
+        //remove card from the list
+        cards.remove(cardIndex);
+        return returnedCard;
+    }
 
     public Card dealCard()
     {
@@ -91,6 +103,15 @@ public class Deck {
     {
         //Removes the selected card
         this.cards.remove(getSelectedCard(card));
+    }
+
+    public String showCards() {
+        String str = "";
+        //cards.sort();
+    for(Card card:cards){
+        str += card.show()+"\n";
+    }
+    return str;
     }
 
 

@@ -47,6 +47,6 @@ public class Card {
 
     String show()
     {
-        return this.number+" of "+this.symbol;
+        return String.format("%-5s%-2s%-10s",this.number," of ",this.symbol);
     }
 }

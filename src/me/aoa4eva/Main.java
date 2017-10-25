@@ -1,5 +1,6 @@
 package me.aoa4eva;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -16,31 +17,51 @@ public class Main {
         Scanner keyboard = new Scanner(System.in);
         Deck thisDeck = new Deck();
         Hand h = new Hand();
-        thisDeck.fillDeck();
 
-        do{
-            Card drawnCard = thisDeck.dealCard();
-            System.out.println("This is the card that was drawn: "+drawnCard.show());
+        // initialize 4 players
+        ArrayList<Player> players = new ArrayList<Player>();
 
-            System.out.println(drawnCard.show() +" has been dealt") ;
-            h.addCard(drawnCard);
+        Player player1= new Player("Player 1");
+        players.add(player1);
+        Player player2= new Player("Player 2");
+        players.add(player2);
+        Player player3= new Player("Player 3");
+        players.add(player3);
+        Player player4= new Player("Player 4");
+        players.add(player4);
 
-            System.out.println("Do you want to pick a card?");
-            yesNo = keyboard.nextLine();
-        }while(yesNo.equalsIgnoreCase("y")||!yesNo.equalsIgnoreCase("n"));
 
-        System.out.println("The dealt cards:");
+        for (Player player:players) {
+            // draw 4 cards to each player
+            Card drawnCard1 = thisDeck.dealCard2();
+            player.addCard(drawnCard1);
+            Card drawnCard2 = thisDeck.dealCard2();
+            player.addCard(drawnCard2);
+            Card drawnCard3 = thisDeck.dealCard2();
+            player.addCard(drawnCard3);
+            Card drawnCard4 = thisDeck.dealCard2();
+            player.addCard(drawnCard4);
 
-        for(Card aCard:h.getCards())
-        {
-            System.out.println(aCard.show());
         }
 
+        //show player cards
+        for (Player player:players) {
+            System.out.println("-------------------------------------");
+            System.out.println("Player " +player.getName().toUpperCase());
+            System.out.println("-------------------------------------");
+            System.out.println((player.showCards()));
+         }
+
         System.out.println("========================================================================");
-        for(Card aCard:thisDeck.getCards())
-        {
-            System.out.println(aCard.show());
-        }
+        //int the cards left in the deck
+        showDeckCards(thisDeck);
         System.out.println("========================================================================");
+
+
+    }
+
+    public static void showDeckCards(Deck deck){
+        System.out.println(deck.showCards());
+
     }
 }

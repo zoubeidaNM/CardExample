@@ -21,4 +21,13 @@ public class Hand {
         cards.add(c);
     }
 
+    public String showCards() {
+        String str = "";
+        for(Card card:cards){
+            str += card.show()+"\n";
+        }
+        return str;
+    }
+
+
 }
